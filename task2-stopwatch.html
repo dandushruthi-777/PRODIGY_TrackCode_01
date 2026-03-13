@@ -1,0 +1,94 @@
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<title>Stopwatch</title>
+
+<style>
+body{
+font-family: Arial;
+text-align: center;
+margin-top: 100px;
+background-color: #f2f2f2;
+}
+
+h1{
+font-size:40px;
+}
+
+#time{
+font-size:50px;
+margin:20px;
+}
+
+button{
+padding:10px 20px;
+font-size:18px;
+margin:10px;
+cursor:pointer;
+border:none;
+background-color:black;
+color:white;
+border-radius:5px;
+}
+
+button:hover{
+background-color:blue;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>Stopwatch</h1>
+
+<div id="time">00:00:00</div>
+
+<button onclick="start()">Start</button>
+<button onclick="pause()">Pause</button>
+<button onclick="reset()">Reset</button>
+
+<script>
+
+let seconds = 0;
+let timer = null;
+
+function start(){
+
+if(timer !== null) return;
+
+timer = setInterval(function(){
+
+seconds++;
+
+let hrs = Math.floor(seconds/3600);
+let mins = Math.floor((seconds % 3600)/60);
+let secs = seconds % 60;
+
+document.getElementById("time").innerHTML =
+String(hrs).padStart(2,'0') + ":" +
+String(mins).padStart(2,'0') + ":" +
+String(secs).padStart(2,'0');
+
+},1000);
+
+}
+
+function pause(){
+clearInterval(timer);
+timer = null;
+}
+
+function reset(){
+clearInterval(timer);
+timer = null;
+seconds = 0;
+document.getElementById("time").innerHTML = "00:00:00";
+}
+
+</script>
+
+</body>
+</html>
+```
